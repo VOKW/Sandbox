@@ -1,0 +1,43 @@
+{% if primary_nav %}
+<ul class="usa-nav-primary usa-accordion">
+  {% for _section in primary_nav %}
+  <li>
+    {% if _section.links %}
+      {% assign section_links = site.navigation[_section.links] | default: _section.links %}
+      {% assign _section_id = _section.id %}
+      {% unless _section_id %}{% assign _section_id = 'nav-' | append: forloop.index %}{% endunless %}
+
+
+      <button class="usa-accordion-button usa-nav-link" aria-expanded="false" aria-controls="{{ _section_id }}">
+        <span>{{ _section.title }}</span>
+      </button>
+      <ul id="{{ _section_id }}" class="usa-nav-submenu" aria-hidden="true">
+      {% for _link in section_links %}
+        <li>
+          <a href="{% if _link.external %}{{ _link.href }}{% else %}{{ _link.href | relative_url }}{% endif %}">{{ _link.title }}</a>
+        </li>
+      {% endfor %}
+      </ul>
+
+
+
+    {% else %}
+      <a class="{% if _section.class %}{{ _section.class }}{% else %} usa-nav-link {% endif %} {% if _section.href == page.permalink %} usa-current{% endif %}" href="{% if _section.external %}{{ _section.href }}{% else %}{{ _section.href | relative_url }}{% endif %}">
+        <span>{{ _section.title }}</span>
+      </a>
+    {% endif %}
+  </li>
+  {% endfor %}
+  <button class="usa-accordion-button usa-nav-link" aria-expanded="false" aria-controls="{{ _section_id }}">
+    <span>DevOps Tool Suite</span>
+  </button>
+  {% assign dots = site.data.navigation.DevOpsToolSuite %}
+  <ul id="{{dots.id}}" class="usa-nav-submenu" aria-hidden="true">
+      {% for tool in dots.tools %}
+        <li>
+          <a href="{{ tool.href | relative_url }}=">{{ tool.title }}</a>
+        </li>
+      {% endfor %}
+  </ul>
+</ul>
+{% endif %}

@@ -1,0 +1,148 @@
+{% include uswds/banner.html %}
+
+{% assign header = site.data.header %}
+{% assign navigation = site.data.navigation %}
+{% assign primary_nav = navigation.primary %}
+
+
+{% if site.logo contains "://" %}
+  {% capture logo_path %}{{ site.logo }}{% endcapture %}
+{% else %}
+  {% capture logo_path %}{{ site.logo }}{% endcapture %}
+{% endif %}
+
+  <header class="usa-header usa-header-extended" role="banner">
+        <div class="usa-navbar">
+          <button class="usa-menu-btn">Menu</button>
+          <div class="usa-logo" id="extended-mega-logo">
+            <a href="{% if header.href %}{{ header.href }}{% else %}{{ site.baseurl }}/{% endif %}" title="Home">
+              {% if header.logo %}
+                <img class="usa-logo-img" src="{% if header.logo.external %}{{ header.logo.src }}{% else %}{{ header.logo.src | relative_url }}{% endif %}" alt="{{ header.logo.alt }}">
+              {% endif %}
+              <em class="usa-logo-text">
+                {{ header.title | default: site.data.config.title }}
+              </em>
+            </a>
+          </div>
+        </div>
+
+
+        <nav role="navigation" class="usa-nav">
+          <div class="usa-nav-inner">
+            <button class="usa-nav-close">
+              <img src="{{ site.baseurl }}/assets/uswds/img/close.svg" alt="close">
+            </button>
+
+            {% if primary_nav %}
+              <ul class="usa-nav-primary usa-accordion">
+              {% for _section in primary_nav %}
+                <li>
+                {% if _section.links %}
+                  {% assign section_links = site.navigation[_section.links] | default: _section.links %}
+                  {% assign _section_id = _section.id %}
+                  {% unless _section_id %}{% assign _section_id = 'nav-' | append: forloop.index %}{% endunless %}
+                  <button class="usa-accordion-button usa-nav-link" aria-expanded="false" aria-controls="{{ _section_id }}">
+                    <span>{{ _section.title }}</span>
+                  </button>
+                  {% if header.type == 'basic' or header.type == 'extended' %}
+                    <ul id="{{ _section_id }}" class="usa-nav-submenu" aria-hidden="true">
+                  {% endif %}
+                  {% if header.type == 'basic-mega' or header.type == 'extended-mega' %}
+                    <div id="{{ _section_id }}" class="usa-nav-submenu usa-megamenu usa-grid-full" aria-hidden="true">
+                  {% endif %}
+                  {% for _link in section_links %}
+                    {% if header.type == 'basic-mega' or header.type == 'extended-mega' %}
+                      <!-- wrap every 3 links in a usa-megamenu-col div -->
+                      {% capture modulo %}{{ forloop.index | modulo: 3 }}{% endcapture %}
+                      {% if modulo == '1' %}
+                        <div class="usa-megamenu-col">
+                        <ul>
+                      {% endif %}
+                    {% endif %}
+                    <li>
+                      <a href="{% if _link.external %}{{ _link.href }}{% else %}{{ _link.href | relative_url }}{% endif %}">{{ _link.title }}</a>
+                    </li>
+                    {% if header.type == 'basic-mega' or header.type == 'extended-mega' %}
+                      {% if modulo == '0' or forloop.last %}
+                        </ul>
+                        </div>
+                      {% endif %}
+                    {% endif %}
+                  {% endfor %}
+                  {% if header.type == 'basic' or header.type == 'extended' %}
+                    </ul>
+                  {% endif %}
+                  {% if header.type == 'basic-mega' or header.type == 'extended-mega' %}
+                    </div>
+                  {% endif %}
+                {% else %}
+                  <a class="{% if _section.class %}{{ _section.class }}{% else %} usa-nav-link {% endif %} {% if _section.href == page.permalink %} usa-current{% endif %}" href="{% if _section.external %}{{ _section.href }}{% else %}{{ _section.href | relative_url }}{% endif %}">
+                    <span>{{ _section.title }}</span>
+                  </a>
+                {% endif %}
+                </li>
+              {% endfor %}
+
+
+<!--              {% assign dots = site.data.navigation.DevOpsToolSuite %}-->
+<!--              <li>-->
+<!--                <button class="usa-accordion-button usa-nav-link" aria-expanded="false" aria-controls="{{ dots.id }}">-->
+<!--                  <span>{{ dots.title }}</span>-->
+<!--                </button>-->
+<!--                <ul id="{{ dots.id }}" class="usa-nav-submenu" aria-hidden="true">-->
+<!--                {% for category in dots.categories %}-->
+<!--                  <li>-->
+<!--                    {% if category.tools %}-->
+<!--                      <button class="usa-accordion-button usa-nav-link" aria-expanded="false" aria-controls="{{ category.id | default: category.title | slugify }}">-->
+<!--                        <span>{{ category.title }}</span>-->
+<!--                      </button>-->
+<!--                      <ul id="{{ category.id | default: category.title | slugify }}" class="usa-nav-submenu" aria-hidden="true">-->
+<!--                        {% for tool in category.tools %}-->
+<!--                          <a href="{{ {{category.href}}{{tool.href}} | relative_url }}">{{ tool.title }}</a>-->
+<!--                        {% endfor %}-->
+<!--                      </ul>-->
+<!--                    {% else %}-->
+<!--                      <a href="{{ category.href | relative_url }}">{{ category.title }}</a>-->
+<!--                    {% endif %}-->
+
+<!--                  </li>-->
+<!--                {% endfor %}-->
+<!--                </ul>-->
+<!--              </li>-->
+
+
+          </ul>
+          {% endif %}
+
+          {% include navigation/secondary/secondary_nav.html %}
+
+        </nav>
+
+<!--        <ul class="visible-links">-->
+<!--          {%- for link in site.data.navigation.main -%}-->
+<!--            {%- if link.url contains '://' -%}-->
+<!--              {%- assign url = link.url -%}-->
+<!--            {%- else -%}-->
+<!--              {%- assign url = link.url | relative_url -%}-->
+<!--            {%- endif -%}-->
+<!--            <li class="masthead__menu-item">-->
+<!--              <a href="{{ url }}" {% if link.description %}title="{{ link.description }}"{% endif %}>{{ link.title }}</a>-->
+<!--            </li>-->
+<!--          {%- endfor -%}-->
+<!--        </ul>-->
+<!--        {% if site.search == true %}-->
+<!--        <button class="search__toggle" type="button">-->
+<!--          <span class="visually-hidden">{{ site.data.ui-text[site.locale].search_label | default: "Toggle search" }}</span>-->
+<!--          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">-->
+<!--            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>-->
+<!--          </svg>-->
+<!--        </button>-->
+<!--        {% endif %}-->
+<!--        <button class="greedy-nav__toggle hidden" type="button">-->
+<!--          <span class="visually-hidden">{{ site.data.ui-text[site.locale].menu_label | default: "Toggle menu" }}</span>-->
+<!--          <div class="navicon"></div>-->
+<!--        </button>-->
+<!--        <ul class="hidden-links hidden"></ul>-->
+  </header>
+
+

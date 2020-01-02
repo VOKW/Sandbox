@@ -1,0 +1,68 @@
+# main links
+primary:
+#  - title: Continuous Integration
+#    href: /ci/
+#  - title: Documentation
+#    href: /docs/
+  - title: Request Help
+    href: /get-help/
+  - title: DevOps Tool Chain
+    links:
+      - title: Overview
+        href: /dots/
+      - title: Continuous Integration
+        href: /dots/ci/
+#      - title: Demo link B
+#        href: /two/b/
+#      - title: Demo link C
+#        href: /two/c/
+#      - title: Demo link D
+#        href: /two/a/
+#      - title: Demo link E
+#        href: /two/b/
+#      - title: Demo link F
+#        href: /two/c/
+#  - title: Referenced section
+#    links: footer
+  - title: DevOps Practices
+    href: /devops-plays/
+  - title: User Feedback
+    href: /measure-kpis/
+  - title: DevOps Release Process
+    href: /va-release/
+#  - title: Github Link
+#    href: https://github.com/department-of-veterans-affairs/DevOps-Coms-Public
+#    external: true
+
+secondary:
+#  - title: "Sample Posts"
+#    href: /year-archive/
+#  - title: "Sample Collections"
+#    href: /collection-archive/
+#  - title: "Sitemap"
+#    links:
+#      - title: ABC
+#        href: /posts/123
+  - title: "Posts"
+    href: /posts/
+  - title: "Categories"
+    href: /categories/
+  - title: "Tags"
+    href: /tags/
+  - title: "About"
+    href: /about/
+
+
+search:
+  enabled: true
+  text: "Search"
+
+#DevOpsToolSuite:
+#  id: "dots"
+#  title: "DevOps Tool Suite"
+#  categories:
+#    - title: "Continuous Integration"
+#      href: /CI/
+#      tools:
+#        - title: "Jenkins"
+#          href: "Jenkins"

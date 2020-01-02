@@ -1,0 +1,85 @@
+/*!
+ * Minimal Mistakes Jekyll Theme 4.17.2 by Michael Rose
+ * Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+ * Licensed under MIT (https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE)
+*/
+
+/* Variables */
+@import "minimal-mistakes/variables";
+
+/* Mixins and functions */
+@import "minimal-mistakes/vendor/breakpoint/breakpoint";
+@include breakpoint-set("to ems", true);
+@import "minimal-mistakes/vendor/magnific-popup/magnific-popup"; // Magnific Popup
+@import "minimal-mistakes/vendor/susy/susy";
+@import "minimal-mistakes/mixins";
+
+/* Core CSS */
+@import "minimal-mistakes/reset";
+@import "minimal-mistakes/base";
+@import "minimal-mistakes/forms";
+@import "minimal-mistakes/tables";
+@import "minimal-mistakes/animations";
+
+/* Components */
+@import "minimal-mistakes/buttons";
+@import "minimal-mistakes/notices";
+@import "minimal-mistakes/masthead";
+@import "minimal-mistakes/navigation";
+@import "minimal-mistakes/footer";
+@import "minimal-mistakes/search";
+@import "minimal-mistakes/syntax";
+
+/* Utility classes */
+@import "minimal-mistakes/utilities";
+
+/* Layout specific */
+@import "minimal-mistakes/page";
+@import "minimal-mistakes/archive";
+@import "minimal-mistakes/sidebar";
+@import "minimal-mistakes/print";
+
+
+@import 'uswds/uswds';
+/*! uswds @version */
+
+// Vendor -------------- //
+@import 'uswds/core/variables-vendor';
+@import 'uswds/lib/bourbon';
+@import 'uswds/lib/neat';
+@import 'uswds/lib/normalize';
+
+// Core -------------- //
+@import 'uswds/core/variables';
+@import 'uswds/core/fonts';
+@import 'uswds/core/grid';
+@import 'uswds/core/utilities';
+@import 'uswds/core/base';
+
+// Elements -------------- //
+// Styles basic HTML elements
+@import 'uswds/elements/buttons';
+@import 'uswds/elements/embed';
+@import 'uswds/elements/figure';
+@import 'uswds/elements/inputs';
+@import 'uswds/elements/labels';
+@import 'uswds/elements/list';
+@import 'uswds/elements/table';
+@import 'uswds/elements/typography';
+
+// Components -------------- //
+@import 'uswds/components/accordions';
+@import 'uswds/components/alerts';
+@import 'uswds/components/banner';
+@import 'uswds/components/footer';
+@import 'uswds/components/forms';
+@import 'uswds/components/graphic-list';
+@import 'uswds/components/header';
+@import 'uswds/components/hero';
+@import 'uswds/components/layout';
+@import 'uswds/components/media-block';
+@import 'uswds/components/navigation';
+@import 'uswds/components/search';
+@import 'uswds/components/section';
+@import 'uswds/components/sidenav';
+@import 'uswds/components/skipnav';

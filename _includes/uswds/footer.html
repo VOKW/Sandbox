@@ -1,0 +1,12 @@
+{% assign footer = site.footer %}
+<footer class="usa-footer usa-footer-{{ footer.type }}" role="contentinfo">
+
+{% if footer.type == 'slim' %}
+{% include uswds/components/footer--slim.html %}
+{% elsif footer.type == 'medium' %}
+{% include uswds/components/footer--medium.html %}
+{% elsif footer.type == 'big' %}
+{% include uswds/components/footer--big.html %}
+{% endif %}
+
+</footer>

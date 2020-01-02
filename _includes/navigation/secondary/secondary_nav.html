@@ -1,0 +1,20 @@
+{% assign secondary_nav = navigation.secondary %}
+
+<div class="usa-nav-secondary">
+  <ul class="usa-unstyled-list usa-nav-secondary-links">
+
+    {% for _link in secondary_nav %}
+    <li>
+      <a href="{% if _link.external %}{{ _link.href }}{% else %}{{ _link.href | relative_url }}{% endif %}"
+         {% if _link.class %} class="{{ _link.class }}" {% endif %}>
+        {{ _link.title }}
+      </a>
+    </li>
+    {% endfor %}
+
+    {% if navigation.search.enabled  %}
+      {% include components/search.html %}
+    {% endif %}
+
+  </ul>
+</div>

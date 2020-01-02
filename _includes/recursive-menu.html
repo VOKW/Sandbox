@@ -1,0 +1,11 @@
+<ul>
+  {% for item in page.collection %}
+    <li><a href="{{ item.href }}">{{ item.title }}</a></li>
+
+    {% if item.subtree %}
+      {% assign tree = item.tree %}
+      {% include tree.html %}
+    {% endif %}
+  {% endfor %}
+
+</ul>
